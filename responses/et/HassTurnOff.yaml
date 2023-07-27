@@ -2,4 +2,11 @@ language: et
 responses:
   intents:
     HassTurnOff:
-      default: "Turned off {{ slots.name }}"
+      default: "Välja lülitatud {{ state.domain }}"
+      lights_area: "Panin tuled kustu"
+      fans_area: "Panin ventilaatorid kinni"
+      cover: "Sulgetud"
+      light_all: "Kustutasin kõik tuled"
+      fan_all: "Panin kõik ventilaatorid kinni"
+      cover_device_class: "Sulgesin {{ slots.device_class }}"
+      lock: "Lukust lahti"

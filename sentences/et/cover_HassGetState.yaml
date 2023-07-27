@@ -1,0 +1,35 @@
+language: et
+intents:
+  HassGetState:
+    data:
+      - sentences:
+          - "kas {cover_classes:device_class} on {cover_states:state}"
+        response: one_yesno
+        requires_context:
+          domain: cover
+        slots:
+          domain: cover
+
+      - sentences:
+          - "kas [mõni] {cover_classes:device_class} on {cover_states:state}"
+        response: any
+        slots:
+          domain: cover
+
+      - sentences:
+          - "kas kõik {cover_classes:device_class} on {cover_states:state} [[<alal>|<aladel>] <ruum>]"
+        response: all
+        slots:
+          domain: cover
+
+      - sentences:
+          - "(milline|millised) [<ruum>] {cover_classes:device_class} on {cover_states:state}"
+        response: which
+        slots:
+          domain: cover
+
+      - sentences:
+          - "mitu [<ruum>] {cover_classes:device_class} on {cover_states:state}"
+        response: how_many
+        slots:
+          domain: cover

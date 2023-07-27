@@ -2,4 +2,11 @@ language: et
 responses:
   intents:
     HassTurnOn:
-      default: "Turned on {{ slots.name }}"
+      default: "Sisse lülitatud {{ slots.name }}"
+      lights_area: "Panin tuled põlema"
+      fans_area: "Panin ventilaatorid tööle"
+      cover: "Avasin"
+      cover_device_class: "Avasin {{ slots.device_class }}"
+      scene: "Aktiveeritud"
+      script: "Alustatud"
+      lock: "Lukustatud"

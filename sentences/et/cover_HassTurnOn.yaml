@@ -1,0 +1,23 @@
+language: et
+intents:
+  HassTurnOn:
+    data:
+      - sentences:
+          - "<ava> {name} [[<alal>|<aladel>] <ruum>]"
+        requires_context:
+          domain: cover
+        response: cover
+
+      - sentences:
+          - "<ava> garaaŽi uks"
+        slots:
+          domain: cover
+          device_class: garage
+        response: cover_device_class
+
+      - sentences:
+          - "<ava> {cover_classes:device_class} [<alal>|<aladel>|<alueella>|<alueelta>] <ruum>"
+          - "<ava> [<alal>|<aladel>] <ruum> {cover_classes:device_class}"
+        slots:
+          domain: cover
+        response: cover_device_class

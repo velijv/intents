@@ -1,0 +1,6 @@
+language: et
+responses:
+  intents:
+    HassLightSet:
+      brightness: "Heledus muudatud"
+      color: "Värv muudatud"

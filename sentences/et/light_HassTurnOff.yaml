@@ -1,0 +1,20 @@
+language: et
+intents:
+  HassTurnOn:
+    data:
+      - sentences:
+          - "<ruum> <lamp> <kustu>"
+        slots:
+          domain: "light"
+        response: lights_area_singular
+      - sentences:
+          - "<ruum> <lambid> <kustu>"
+        slots:
+          domain: "light"
+        response: lights_area_plural
+      - sentences:
+          - "kogu <ruum>"
+          - "<ruumi> (<lamp>|<lambid>) <kustu>"
+        slots:
+          domain: "light"
+        response: lights_area_uncountable

@@ -7,7 +7,139 @@ responses:
     no_device_class: "{{ area }} ei sisalda {{ device_class }}"
     no_entity: "Puudub seade või üksus nimega {{ entity }}"
     handle_error: "Soovi töötlemisel tekkis tundmatu viga"
-lists: {}
-expansion_rules: {}
+lists:
+  color:
+    values:
+      - in: "(valge|valgeks)"
+        out: "white"
+      - in: "(must|mustaks)"
+        out: "black"
+      - in: "(punane|punaseks)"
+        out: "red"
+      - in: "(oranž|oranžiks)"
+        out: "orange"
+      - in: "(kollane|kollaseks)"
+        out: "yellow"
+      - in: "(roheline|roheliseks)"
+        out: "green"
+      - in: "(sinine|siniseks)"
+        out: "blue"
+      - in: "lilla"
+        out: "purple"
+      - in: "pruun"
+        out: "brown"      
+  brightness:
+    range:
+      type: "percentage"
+      from: 0
+      to: 100
+  temperature:
+    range:
+      type: "temperature"
+      from: 0
+      to: 100
+  temperature_unit:
+    values:
+      - "celsius"
+      - in: "c"
+        out: "celsius"
+      - "fahrenheit"
+      - in: "f"
+        out: "fahrenheit"
+  brightness_level:
+    values:
+      - in: "(max|maksimi|maksimiin|maksimi tasolle|korkein|korkeimmalle tasolle)"
+        out: 100
+      - in: "(min|minimi|minimiin|alin|matalin|matalimmalle tasolle)"
+        out: 1
+  on_off_states:
+    values:
+      - in: "(põleb|põlevad)"
+        out: "on"
+      - in: "(kustus|ei põle)"
+        out: "off"        
+  on_off_domains:
+    values:
+      - in: "(<lamp>|<lambid>)"
+        out: light
+      - in: "(ventilaator|ventilaatorid|ventikas|ventikad)"
+        out: fan
+      - in: "(<lüliti>|<lülitid>)"
+        out: switch
+  cover_states:
+    values:
+      - in: "(avatud|lahti)"
+        out: "open"
+      - in: "(suletud|kinni)"
+        out: "closed"
+      - in: "avanemas"
+        out: "opening"
+      - in: "sulgemas"
+        out: "closing"
+  cover_classes:
+    values:
+      - in: "varikatus[ed]"
+        out: "awning"
+      - in: "ruloo[d]"
+        out: "blind"
+      - in: "kardin[ad]"
+        out: "curtain"
+      - in: "uks[ed]"
+        out: "door"
+      - in: "garaaži ukse[d]"
+        out: "garage"
+      - in: "värava[d]"
+        out: "gate"
+      - in: "(vari|varjud)"
+        out: "shade"
+      - in: "(luuk|luugid)"
+        out: "shutter"
+      - in: "(aken|aknad)"
+        out: "window"
+  lock_states:
+    values:
+      - in: "(lukus|lukustatud|kinni|suletud)"
+        out: "locked"
+      - in: "(lahti|avatud|lukustamata)"
+        out: "unlocked"
+
+  bs_battery_charging_states:
+    values:
+      - in: "(laadib|laeb)"
+        out: "on"
+      - in: "(ei laadi|ei lae)"
+        out: "off"
+
+expansion_rules:
+
+  ruum: "{area}" # Room, this Estonian version helps when reading sentences
+  # Area prefix to avoid congjugating areas if possible
+  ala: "(ala|koht|ruum|tuba)" # singular, nimetav
+  alad: "(alad|kohad|ruumid|toad)" # plural, nimetav
+  alal: "(alal|kohal|ruumil|toal)" # singular, osastav  
+  aladel: "(alade|kohtade|ruumide|tubade)" # plural, osastav
+
+# On off domains - Lights
+  lamp: "(valgus|lamp|tuli|pirn)" # light, singular
+  lambid: "(valgustid|lambid|tuled|pirnid)" # lights, plural
+
+  # On off domains - Switches
+  lüliti: "(lüliti|nupp)" # switch, singular
+  lülitid: "(lülitid|nupud)" # switches, plural
+
+  # Actions / Verbs
+  ütle: "(ütle|näita)" # tell|show|say
+  pane: "(vaheta|vajuta|muuda)" # toggle|put|set
+  põlema: "([pane] põlema|süüta|tee)" # light   
+  kustu: "(((kustu|kinni)|kustuta))" # light   
+  alusta: "(alusta|jooksuta|käivita|pane tööle)" # run|start
+  lõpeta: "(lõpeta|pane kinni)" # stop|turn off|stop
+  ava: "(ava|tee lahti|tõsta)" # open|open|raise
+  sulge: "(sulge|lase alla)" # close|lower
+  säti: "(vaheta|pane|keera|säti|muuda|seadista)" # toggle|set|turn|adjust|put|change (for brightness)
+  muuda: "(sea|vaheta|muuda|pane)" # set|change|adjust|put (numeric_value)
+  praegu: "(praegu|nüüd|just nüüd|praegusel hetkel)" # Now
+
 skip_words:
   - "palun" # Please
+  - "kas sa" # Can you
